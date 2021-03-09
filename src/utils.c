@@ -232,10 +232,16 @@ void RGBLED_set_color(uint32_t color) {
     write_apa_byte(0x0);
     write_apa_byte(0x0);
 
-    write_apa_byte(0xFF);
-    write_apa_byte(color >> 16);
-    write_apa_byte(color >> 8);
-    write_apa_byte(color);
+#if defined(BOARD_RGBLED_COUNT)
+    for (int i = 0; i < BOARD_RGBLED_COUNT; i++) {
+#endif
+        write_apa_byte(0xFF);
+        write_apa_byte(color >> 16);
+        write_apa_byte(color >> 8);
+        write_apa_byte(color);
+#if defined(BOARD_RGBLED_COUNT)
+    }
+#endif
 
     write_apa_byte(0xFF);
     write_apa_byte(0xFF);
