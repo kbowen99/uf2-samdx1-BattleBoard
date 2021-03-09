@@ -14,4 +14,4 @@ build:
 
   artifacts:
     paths:
-      - "*.bin"
+      - "build/*.bin"
